@@ -258,7 +258,7 @@ def test_local_solver_equality_ising(m, n):
 
         result = np.array(sampleset.record[0].sample)
         result_1 = result[0:m]
-        result_2 = result[m : (m + n)]  # noqa: E203
+        result_2 = result[m: (m + n)]  # noqa: E203
         assert np.count_nonzero(result_1 == 1) == np.count_nonzero(result_2 == 1)
 
         # Execution time should be within practical seconds (20 sec).
@@ -279,7 +279,7 @@ def test_local_solver_equality_qubo(m, n):
 
         result = np.array(sampleset.record[0].sample)
         result_1 = result[0:m]
-        result_2 = result[m : (m + n)]  # noqa: E203
+        result_2 = result[m: (m + n)]  # noqa: E203
         assert np.count_nonzero(result_1 == 1) == np.count_nonzero(result_2 == 1)
 
         # Execution time should be within practical seconds (20 sec).

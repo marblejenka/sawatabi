@@ -29,15 +29,15 @@ class IO:
         # fmt: off
         number_pattern = re.compile(r"^[0-9]+$")
         return (messages
-            | "Filter" >> beam.Filter(lambda element: number_pattern.match(element))
-            | "To int" >> beam.Map(lambda e: int(e)))
+                | "Filter" >> beam.Filter(lambda element: number_pattern.match(element))
+                | "To int" >> beam.Map(lambda e: int(e)))
         # fmt: on
 
     @classmethod
     def _read_as_json(cls, messages):
         # fmt: off
         return (messages
-            | "To JSON" >> beam.Map(lambda e: json.loads(e)))
+                | "To JSON" >> beam.Map(lambda e: json.loads(e)))
         # fmt: on
 
     @classmethod
@@ -48,7 +48,7 @@ class IO:
         elif subscription is not None:
             messages = beam.io.ReadFromPubSub(subscription=f"projects/{project}/subscriptions/{subscription}")
         return (messages
-            | "Decode" >> beam.Map(lambda m: m.decode("utf-8")))
+                | "Decode" >> beam.Map(lambda m: m.decode("utf-8")))
         # fmt: on
 
     @classmethod
@@ -87,7 +87,7 @@ class IO:
     def write_to_pubsub(cls, project, topic):
         # fmt: off
         return ("Encode" >> beam.Map(lambda s: s.encode("utf-8"))
-            | beam.io.WriteToPubSub(topic=f"projects/{project}/topics/{topic}"))
+                | beam.io.WriteToPubSub(topic=f"projects/{project}/topics/{topic}"))
         # fmt: on
 
     @classmethod
